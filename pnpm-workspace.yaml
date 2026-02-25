@@ -1,0 +1,9 @@
+onlyBuiltDependencies:
+  - '@parcel/watcher'
+  - argon2
+  - cpu-features
+  - esbuild
+  - sharp
+  - sqlite3
+  - ssh2
+  - vue-demi

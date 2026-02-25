@@ -1,0 +1,26 @@
+{
+  "name": "test-app",
+  "version": "0.0.1",
+  "description": "",
+  "type": "module",
+  "scripts": {
+    "build": "nuxt build",
+    "dev": "pruvious dev",
+    "format": "prettier --write .",
+    "generate": "nuxt generate",
+    "preview": "nuxt preview",
+    "postinstall": "nuxt prepare"
+  },
+  "dependencies": {
+    "nuxt": "3.15.4",
+    "pruvious": "3.15.6",
+    "vue": "3.4.23",
+    "vue-router": "4.3.2",
+    "zod": "^4.3.6"
+  },
+  "devDependencies": {
+    "@nuxtjs/google-fonts": "3.2.0"
+  },
+  "license": "MIT",
+  "packageManager": "pnpm@10.11.0"
+}
