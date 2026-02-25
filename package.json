@@ -1,17 +1,24 @@
 {
   "name": "test-app",
-  "version": "0.0.1",
-  "description": "",
   "type": "module",
+  "version": "0.0.1",
+  "packageManager": "pnpm@10.11.0",
+  "description": "",
+  "license": "MIT",
   "scripts": {
     "build": "nuxt build",
     "dev": "pruvious dev",
     "format": "prettier --write .",
     "generate": "nuxt generate",
     "preview": "nuxt preview",
-    "postinstall": "nuxt prepare"
+    "postinstall": "nuxt prepare",
+    "prepare": "husky",
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix"
   },
   "dependencies": {
+    "@nuxt/eslint": "^1.15.2",
+    "eslint": "^10.0.2",
     "nuxt": "3.15.4",
     "pruvious": "3.15.6",
     "vue": "3.4.23",
@@ -19,8 +26,13 @@
     "zod": "^4.3.6"
   },
   "devDependencies": {
-    "@nuxtjs/google-fonts": "3.2.0"
+    "@antfu/eslint-config": "^7.6.0",
+    "@nuxtjs/google-fonts": "3.2.0",
+    "eslint-plugin-format": "^2.0.0",
+    "husky": "^9.1.7",
+    "lint-staged": "^16.2.7"
   },
-  "license": "MIT",
-  "packageManager": "pnpm@10.11.0"
+  "lint-staged": {
+    "*": "pnpm lint"
+  }
 }

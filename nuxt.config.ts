@@ -3,7 +3,7 @@ import env from "./lib/env";
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
   devtools: { enabled: true },
-  modules: ['@nuxtjs/google-fonts', 'pruvious'],
+  modules: ["@nuxt/eslint", "@nuxtjs/google-fonts", "pruvious"],
   googleFonts: {
     families: {
       Lato: {
@@ -13,6 +13,11 @@ export default defineNuxtConfig({
       Poppins: [500],
     },
   },
+  eslint: {
+    config: {
+      standalone: false,
+    },
+  },
   pruvious: {
     jwt: {
       secretKey: env.PRUVIOUS_SECRET_KEY,
@@ -20,12 +25,12 @@ export default defineNuxtConfig({
     standardCollections: {
       pages: false,
     },
-    database: env.DATABASE_URL
+    database: env.DATABASE_URL,
   },
-  compatibilityDate: '2026-02-24',
+  compatibilityDate: "2026-02-24",
   runtimeConfig: {
     public: {
       showBanner: false,
     },
   },
-})
+});
