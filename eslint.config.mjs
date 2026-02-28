@@ -36,17 +36,12 @@ export default withNuxt(antfu({
       tsconfig: { rootDir: "." },
     }],
     "unicorn/filename-case": ["error", {
-      case: "pascalCase",
-      ignore: [
-        "settings.json",
-        "eslint.config.mjs",
-        "nuxt.config.ts",
-        "package.json",
-        "pnpm-lock.yaml",
-        "pnpm-workspace.yaml",
-        "README.md",
-        "tsconfig.json",
-      ],
+      cases: {
+        pascalCase: true,
+        kebabCase: true,
+      },
+      multipleFileExtensions: true,
+      ignore: ["README.md"],
     }],
   },
 }));

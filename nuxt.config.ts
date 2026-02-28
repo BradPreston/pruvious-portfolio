@@ -1,4 +1,4 @@
-import env from "./lib/Env";
+import env from "./lib/env";
 
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
