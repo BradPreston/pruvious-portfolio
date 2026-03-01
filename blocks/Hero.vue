@@ -44,6 +44,7 @@ defineProps({
     <section class="hero">
       <div class="hero-left">
         <h1 v-if="headingType === 'h1'" class="heading">
+          <Icon name="uil:github" class="icon" />
           {{ title }}
         </h1>
         <h2 v-else class="heading">
