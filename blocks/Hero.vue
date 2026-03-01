@@ -78,7 +78,7 @@ defineProps({
 .hero {
   display: flex;
   flex-direction: column-reverse;
-  align-items: center;
+  align-items: flex-start;
   gap: 2rem;
 }
 
@@ -90,6 +90,7 @@ defineProps({
 @container container (width > 600px) {
   .hero {
     flex-direction: row;
+    align-items: center;
   }
 }
 
@@ -98,10 +99,12 @@ defineProps({
   font-size: 2rem;
   text-transform: uppercase;
   margin-bottom: 1rem;
+  color: var(--secondary);
 }
 
 .description {
   margin: 0;
+  color: var(--text);
 }
 
 .button-group {
@@ -113,24 +116,26 @@ defineProps({
 
 .button {
   border-radius: 9999px;
-  border: 2px solid #333333;
+  border: 2px solid var(--primary);
   text-decoration: none;
   padding: 0.5rem 1rem;
-  transition: all 0.15s ease;
+  transition: var(--transition);
+  font-weight: 500;
 }
 
 .button:hover {
-  background: rgb(51, 51, 51, 0.15);
-  color: #333333;
+  background: var(--primary-hover);
+  color: var(--primary);
 }
 
 .primary {
-  background: #333333;
-  color: #ffffff;
+  background: var(--primary);
+  color: var(--bg);
 }
 
 .outline {
-  color: #333333;
+  color: var(--primary);
+  background: var(--bg);
 }
 
 .image {
@@ -139,6 +144,6 @@ defineProps({
   height: auto;
   object-fit: cover;
   width: 100%;
-  box-shadow: 0 0 50px 15px rgba(213, 99, 90, 0.25);
+  box-shadow: 0 0 50px 15px var(--primary-hover);
 }
 </style>
