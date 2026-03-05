@@ -54,13 +54,14 @@ defineProps({
           {{ description }}
         </p>
         <div class="button-group">
-          <a
+          <Button
             v-for="button of buttons"
             :key="button.link.toString()"
-            class="button"
-            :class="button.variant"
+            :variant="button.variant"
             :href="button.link.toString()"
-          >{{ button.title }}</a>
+          >
+            {{ button.title }}
+          </Button>
         </div>
       </div>
       <div class="hero-right">
@@ -113,30 +114,6 @@ defineProps({
   display: flex;
   gap: 1rem;
   flex-wrap: wrap;
-}
-
-.button {
-  border-radius: 9999px;
-  border: 2px solid var(--primary);
-  text-decoration: none;
-  padding: 0.5rem 1rem;
-  transition: var(--transition);
-  font-weight: 500;
-}
-
-.button:hover {
-  background: var(--primary-hover);
-  color: var(--primary);
-}
-
-.primary {
-  background: var(--primary);
-  color: var(--bg);
-}
-
-.outline {
-  color: var(--primary);
-  background: var(--bg);
 }
 
 .image {

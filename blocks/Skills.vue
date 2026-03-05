@@ -62,13 +62,14 @@ defineProps({
         <p class="description">
           {{ description }}
         </p>
-        <a
+        <Button
           v-for="b of button"
           :key="b.link.toString()"
-          class="button"
-          :class="b.variant"
+          :variant="b.variant"
           :href="b.link.toString()"
-        >{{ b.title }}</a>
+        >
+          {{ b.title }}
+        </Button>
       </div>
     </section>
   </Container>
@@ -135,29 +136,5 @@ defineProps({
   color: var(--text);
   margin: 0;
   margin-bottom: 2rem;
-}
-
-.button {
-  border-radius: 9999px;
-  border: 2px solid var(--primary);
-  text-decoration: none;
-  padding: 0.5rem 1rem;
-  transition: var(--transition);
-  font-weight: 500;
-}
-
-.button:hover {
-  background: var(--primary-hover);
-  color: var(--primary);
-}
-
-.primary {
-  background: var(--primary);
-  color: var(--bg);
-}
-
-.outline {
-  color: var(--primary);
-  background: var(--bg);
 }
 </style>
