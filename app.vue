@@ -28,6 +28,7 @@ useHead({
   --primary: light-dark(#d5635a, #d5635a);
   --primary-hover: light-dark(rgba(213, 99, 90, 0.2), rgba(213, 99, 90, 0.2));
   --secondary: light-dark(#2b2a34, #cba72f);
+  --secondary-hover: light-dark(rgba(213, 99, 90, 0.2), rgba(203, 167, 47, 0.2));
   --bg: light-dark(#e0e1dd, #2b2a34);
   --text: light-dark(#2b2a34, #e0e1dd);
   --transition: all 0.15s ease;
