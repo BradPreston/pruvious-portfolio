@@ -3,6 +3,7 @@ import { recordsField, textField } from "~/.pruvious";
 
 defineProps({
   title: textField({ required: true }),
+  anchorLink: textField({}),
   portfolioItems: recordsField({
     collection: "portfolio",
     fields: {
@@ -20,7 +21,7 @@ defineProps({
 
 <template>
   <Container>
-    <section class="portfolio">
+    <section :id="anchorLink || undefined" class="portfolio">
       <h2 class="title">
         {{ title }}
       </h2>

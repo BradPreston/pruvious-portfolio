@@ -3,6 +3,7 @@ import { linkField, repeaterField, selectField, textAreaField, textField } from 
 
 defineProps({
   title: textField({ required: true }),
+  anchorLink: textField({}),
   skills: repeaterField({
     max: 6,
     subfields: {
@@ -39,7 +40,7 @@ defineProps({
 
 <template>
   <Container>
-    <section class="skills">
+    <section :id="anchorLink || undefined" class="skills">
       <h2 class="title">
         {{ title }}
       </h2>

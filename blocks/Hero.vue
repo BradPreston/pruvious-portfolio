@@ -3,6 +3,7 @@ import { imageField, linkField, repeaterField, selectField, textAreaField, textF
 
 defineProps({
   title: textField({ required: true }),
+  anchorLink: textField({}),
   description: textAreaField({ required: true }),
   headingType: selectField({
     choices: {
@@ -41,7 +42,7 @@ defineProps({
 
 <template>
   <Container>
-    <section class="hero">
+    <section :id="anchorLink || undefined" class="hero">
       <div class="hero-left">
         <h1 v-if="headingType === 'h1'" class="heading">
           <Icon name="uil:github" class="icon" />
