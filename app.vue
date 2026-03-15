@@ -34,6 +34,11 @@ useHead({
   --transition: all 0.15s ease;
 }
 
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 50px;
+}
+
 body {
   font-family: "Poppins", Arial, Helvetica, sans-serif;
   background: var(--bg);
