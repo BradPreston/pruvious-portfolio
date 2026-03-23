@@ -50,7 +50,12 @@ onMounted(() => {
         ? blockAnchorLinks?.[0]
         : blockAnchorLinks?.find(({ anchor }) => visibleAnchors.has(anchor));
 
-      activeAnchor.value = first?.anchor ?? null;
+      const newAnchor = first?.anchor ?? null;
+      if (newAnchor !== activeAnchor.value) {
+        activeAnchor.value = newAnchor;
+        const url = newAnchor ? `${window.location.pathname}${newAnchor}` : window.location.pathname;
+        history.replaceState(null, "", url);
+      }
     },
     { threshold: 0.3 },
   );
