@@ -49,13 +49,16 @@ defineProps({
               v-if="skill.proficieny.toString() === 'strong'"
               class="icon"
               icon="CheckmarkCircle"
+              aria-hidden="true"
             />
             <PruviousIcon
               v-else
               class="icon"
               icon="CheckmarkCircleEmpty"
+              aria-hidden="true"
             />
             {{ skill.title }}
+            <span class="sr-only">({{ skill.proficieny }})</span>
           </div>
         </div>
         <p class="description">
@@ -130,6 +133,18 @@ defineProps({
 
 .icon {
   fill: var(--primary);
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
 }
 
 .description {

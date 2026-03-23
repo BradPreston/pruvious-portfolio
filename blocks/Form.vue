@@ -86,7 +86,7 @@ async function handleSubmit(event: Event) {
         {{ title }}
       </h2>
       <div class="content">
-        <p v-if="submitted" class="submitted">
+        <p v-if="submitted" class="submitted" role="alert">
           Thank you for your submission! I will respond as soon as possible.
         </p>
         <form v-else class="form" @submit="handleSubmit">
@@ -104,6 +104,8 @@ async function handleSubmit(event: Event) {
               rows="5"
               :placeholder="field.placeholder"
               :name="field.label.toLowerCase()"
+              :aria-required="field.required ? 'true' : undefined"
+              :aria-describedby="errors[field.label.toLowerCase()] ? `${createFormId(field.label)}-error` : undefined"
             />
             <input
               v-else
@@ -112,15 +114,22 @@ async function handleSubmit(event: Event) {
               :type="field.type!"
               :placeholder="field.placeholder"
               :name="field.label.toLowerCase()"
+              :aria-required="field.required ? 'true' : undefined"
+              :aria-describedby="errors[field.label.toLowerCase()] ? `${createFormId(field.label)}-error` : undefined"
             >
-            <span v-if="errors[field.label.toLowerCase()]" class="error">
+            <span
+              v-if="errors[field.label.toLowerCase()]"
+              :id="`${createFormId(field.label)}-error`"
+              class="error"
+              role="alert"
+            >
               {{ errors[field.label.toLowerCase()] }}
             </span>
           </div>
           <button type="submit" class="button submit-button">
             {{ form!.submitText }}
           </button>
-          <span v-if="errors.form" class="error">
+          <span v-if="errors.form" class="error" role="alert">
             {{ errors.form }}
           </span>
         </form>
@@ -223,6 +232,17 @@ async function handleSubmit(event: Event) {
 .submit-button:hover {
   background: var(--primary-hover);
   color: var(--primary);
+}
+
+.submit-button:focus-visible {
+  outline: 3px solid var(--primary);
+  outline-offset: 2px;
+}
+
+.input:focus-visible,
+.textarea:focus-visible {
+  outline: 3px solid var(--primary);
+  outline-offset: 2px;
 }
 
 .error {

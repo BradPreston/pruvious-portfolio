@@ -12,7 +12,7 @@ function formatDate(timestamp: number) {
 
 <template>
   <div class="post">
-    <PruviousImage :image="post.thumbnail" class="image" />
+    <PruviousImage :image="post.thumbnail" :alt="post.thumbnail?.alt" class="image" />
     <div class="content">
       <a :href="`/blog/${post.path}`" class="link">
         <h3 class="title">
@@ -58,6 +58,11 @@ function formatDate(timestamp: number) {
 
 .link {
   text-decoration: none;
+}
+
+.link:focus-visible {
+  outline: 3px solid var(--primary);
+  outline-offset: 2px;
 }
 
 .date {

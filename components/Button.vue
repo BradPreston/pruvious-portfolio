@@ -12,7 +12,13 @@ defineProps<IButton>();
     :target="target"
   >
     <slot />
-    <PruviousIcon v-if="icon" class="icon" :icon="icon" />
+    <PruviousIcon
+      v-if="icon"
+      class="icon"
+      :icon="icon"
+      aria-hidden="true"
+    />
+    <span v-if="target === '_blank'" class="sr-only">(opens in new tab)</span>
   </NuxtLink>
 </template>
 
@@ -67,5 +73,22 @@ defineProps<IButton>();
   .icon {
     fill: var(--secondary);
   }
+}
+
+.button:focus-visible {
+  outline: 3px solid var(--primary);
+  outline-offset: 2px;
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
 }
 </style>

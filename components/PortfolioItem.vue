@@ -8,7 +8,7 @@ defineProps<{
 
 <template>
   <div class="portfolio-item">
-    <PruviousImage :image="item.thumbnail" class="image" />
+    <PruviousImage :image="item.thumbnail" :alt="item.thumbnail?.alt" class="image" />
     <div class="content">
       <h3 class="title">
         {{ item.title }}

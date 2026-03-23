@@ -26,13 +26,11 @@ defineProps({
         {{ title }}
       </h2>
       <div class="content">
-        <div class="portfolio-items">
-          <PortfolioItem
-            v-for="item of portfolioItems"
-            :key="item.id"
-            :item="item"
-          />
-        </div>
+        <ul class="portfolio-items">
+          <li v-for="item of portfolioItems" :key="item.id">
+            <PortfolioItem :item="item" />
+          </li>
+        </ul>
       </div>
     </section>
   </Container>
@@ -60,6 +58,12 @@ defineProps({
 
 .content {
   width: 100%;
+}
+
+.portfolio-items {
+  list-style: none;
+  margin: 0;
+  padding: 0;
 }
 
 @container container (width > 500px) {

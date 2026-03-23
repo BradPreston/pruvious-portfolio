@@ -26,13 +26,11 @@ defineProps({
         {{ title }}
       </h2>
       <div class="content">
-        <div class="posts-list">
-          <BlogPost
-            v-for="post of posts"
-            :key="post.id"
-            :post="post"
-          />
-        </div>
+        <ul class="posts-list">
+          <li v-for="post of posts" :key="post.id">
+            <BlogPost :post="post" />
+          </li>
+        </ul>
       </div>
     </section>
   </Container>
@@ -60,6 +58,12 @@ defineProps({
 
 .content {
   width: 100%;
+}
+
+.posts-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
 }
 
 @container container (width > 500px) {
