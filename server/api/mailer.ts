@@ -17,10 +17,12 @@ export default defineEventHandler(async (event) => {
   `;
 
     client.sendEmail({
-      From: formData.get("email") as string,
+      From: process.env.POSTMARK_TO_ADDRESS!,
+      ReplyTo: formData.get("email") as string,
       To: process.env.POSTMARK_TO_ADDRESS,
-      Subject: "Test",
+      Subject: "New email from portfolio",
       HtmlBody: body,
+      MessageStream: "outbound",
     });
   }
   catch (error) {
