@@ -10,7 +10,12 @@ defineProps<{
 </script>
 
 <template>
-  <NuxtLink :to="href" :class="variant" class="button">
+  <NuxtLink
+    :to="href"
+    :class="variant"
+    class="button"
+    :target="target"
+  >
     <slot />
     <PruviousIcon v-if="icon" class="icon" :icon="icon" />
   </NuxtLink>

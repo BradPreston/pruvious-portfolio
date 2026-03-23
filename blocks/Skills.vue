@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { linkField, repeaterField, selectField, textAreaField, textField } from "~/.pruvious";
+import { checkboxField, linkField, repeaterField, selectField, textAreaField, textField } from "~/.pruvious";
 
 defineProps({
   title: textField({ required: true }),
@@ -32,6 +32,9 @@ defineProps({
         },
         default: "outline",
         required: true,
+      }),
+      newTab: checkboxField({
+        default: false,
       }),
     },
   }),
@@ -68,6 +71,7 @@ defineProps({
           :key="b.link.toString()"
           :variant="b.variant"
           :href="b.link.toString()"
+          :target="b.newTab ? '_blank' : '_self'"
         >
           {{ b.title }}
         </Button>
