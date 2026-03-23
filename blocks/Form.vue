@@ -1,7 +1,9 @@
 <script setup lang="ts">
+import { z } from "zod";
+
 import { recordField, textField } from "~/.pruvious";
 
-defineProps({
+const props = defineProps({
   title: textField({ required: true }),
   anchorLink: textField({}),
   form: recordField({
@@ -15,8 +17,65 @@ defineProps({
   }),
 });
 
+function buildSchema(fields: NonNullable<typeof props.form>["fields"]) {
+  const shape: Record<string, z.ZodTypeAny> = {};
+
+  for (const field of fields ?? []) {
+    const key = field.label.toLowerCase();
+    let rule: z.ZodTypeAny = z.string();
+
+    if (field.type === "email") {
+      rule = z.email("Invalid email address");
+    }
+
+    if (field.required) {
+      rule = (rule as z.ZodString).min(1, `${field.label} is required`);
+    }
+    else {
+      rule = rule.optional();
+    }
+
+    shape[key] = rule;
+  }
+
+  return z.object(shape);
+}
+
 function createFormId(label: string) {
   return label.toLowerCase().replaceAll(" ", "");
+}
+
+const errors = ref<Record<string, string>>({});
+const submitted = ref(false);
+
+async function handleSubmit(event: Event) {
+  event.preventDefault();
+  errors.value = {};
+
+  const formData = new FormData(event.target as HTMLFormElement);
+  const data = Object.fromEntries(formData.entries());
+
+  const schema = buildSchema(props.form?.fields ?? []);
+  const result = schema.safeParse(data);
+
+  if (!result.success) {
+    for (const issue of result.error.issues) {
+      errors.value[issue.path[0] as string] = issue.message;
+    }
+    return;
+  }
+
+  try {
+    await fetch("/api/mailer", {
+      method: "POST",
+      body: formData,
+    });
+    submitted.value = true;
+  }
+  catch {
+    submitted.value = false;
+    errors.value.form = "Something went wrong";
+  }
 }
 </script>
 
@@ -27,7 +86,10 @@ function createFormId(label: string) {
         {{ title }}
       </h2>
       <div class="content">
-        <form class="form">
+        <p v-if="submitted" class="submitted">
+          Thank you for your submission! I will respond as soon as possible.
+        </p>
+        <form v-else class="form" @submit="handleSubmit">
           <div
             v-for="field of form?.fields"
             :key="field.label"
@@ -41,6 +103,7 @@ function createFormId(label: string) {
               class="textarea"
               rows="5"
               :placeholder="field.placeholder"
+              :name="field.label.toLowerCase()"
             />
             <input
               v-else
@@ -48,15 +111,18 @@ function createFormId(label: string) {
               class="input"
               :type="field.type!"
               :placeholder="field.placeholder"
+              :name="field.label.toLowerCase()"
             >
+            <span v-if="errors[field.label.toLowerCase()]" class="error">
+              {{ errors[field.label.toLowerCase()] }}
+            </span>
           </div>
-          <Button
-            :key="form?.id"
-            class="button"
-            variant="primary"
-          >
+          <button type="submit" class="button submit-button">
             {{ form!.submitText }}
-          </Button>
+          </button>
+          <span v-if="errors.form" class="error">
+            {{ errors.form }}
+          </span>
         </form>
       </div>
     </section>
@@ -107,6 +173,7 @@ function createFormId(label: string) {
   display: flex;
   flex-wrap: wrap;
   gap: 2rem;
+  min-height: 450px;
 }
 
 .label {
@@ -127,14 +194,44 @@ function createFormId(label: string) {
 
 .input {
   border-radius: 999px;
+  font-family: var(--font-family);
 }
 
 .textarea {
   border-radius: 1rem;
+  font-family: var(--font-family);
 }
 
 .button {
   width: 100%;
   text-align: center;
+}
+
+.submit-button {
+  border-radius: 9999px;
+  border: 2px solid var(--primary);
+  background: var(--primary);
+  color: var(--bg);
+  padding: 0.5rem 1rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: var(--transition);
+  font-size: 1rem;
+  font-family: "Poppins", Arial, Helvetica, sans-serif;
+}
+
+.submit-button:hover {
+  background: var(--primary-hover);
+  color: var(--primary);
+}
+
+.error {
+  font-weight: normal;
+  color: var(--secondary);
+}
+
+.submitted {
+  color: var(--text);
+  min-height: 450px;
 }
 </style>

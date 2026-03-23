@@ -7,6 +7,8 @@ const EnvSchema = z.object({
   DATABASE_URL: z.string(),
   DATABASE_AUTH_TOKEN: z.string(),
   PRUVIOUS_SECRET_KEY: z.string(),
+  POSTMARK_API_TOKEN: z.string(),
+  POSTMARK_TO_ADDRESS: z.string(),
 });
 
 export type EnvSchema = z.infer<typeof EnvSchema>;
