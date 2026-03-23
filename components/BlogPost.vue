@@ -14,9 +14,11 @@ function formatDate(timestamp: number) {
   <div class="post">
     <PruviousImage :image="post.thumbnail" class="image" />
     <div class="content">
-      <h3 class="title">
-        {{ post.title }}
-      </h3>
+      <a :href="`/blog/${post.path}`" class="link">
+        <h3 class="title">
+          {{ post.title }}
+        </h3>
+      </a>
       <p v-if="post.createdAt" class="date">
         {{ formatDate(post.createdAt) }}
       </p>
@@ -52,6 +54,10 @@ function formatDate(timestamp: number) {
   font-size: 1.25rem;
   font-weight: normal;
   color: var(--text);
+}
+
+.link {
+  text-decoration: none;
 }
 
 .date {
