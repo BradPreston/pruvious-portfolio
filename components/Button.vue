@@ -1,12 +1,7 @@
 <script setup lang="ts">
-import type { Icon } from "~/.pruvious";
+import type { IButton } from "~/types";
 
-defineProps<{
-  icon?: Icon;
-  href?: string;
-  target?: "_blank" | "_self";
-  variant?: "primary" | "outline" | "link";
-}>();
+defineProps<IButton>();
 </script>
 
 <template>

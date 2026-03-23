@@ -1,5 +1,6 @@
 <script setup lang="ts">
-import { checkboxField, linkField, repeaterField, selectField, textAreaField, textField } from "~/.pruvious";
+import { repeaterField, selectField, textAreaField, textField } from "~/.pruvious";
+import { buttonSubfields } from "~/lib/button-subfields";
 
 defineProps({
   title: textField({ required: true }),
@@ -21,22 +22,7 @@ defineProps({
   description: textAreaField(),
   button: repeaterField({
     max: 1,
-    subfields: {
-      link: linkField({ required: true }),
-      title: textField({ required: true }),
-      variant: selectField({
-        choices: {
-          primary: "Primary",
-          outline: "Outline",
-          link: "Link",
-        },
-        default: "outline",
-        required: true,
-      }),
-      newTab: checkboxField({
-        default: false,
-      }),
-    },
+    subfields: buttonSubfields,
   }),
 });
 </script>

@@ -33,4 +33,13 @@ export default defineNuxtConfig({
       showBanner: false,
     },
   },
+  nitro: {
+    typescript: {
+      tsConfig: {
+        compilerOptions: {
+          includes: ["types/index.d.ts"],
+        },
+      },
+    },
+  },
 });
