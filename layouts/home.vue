@@ -1,6 +1,11 @@
 <script lang="ts" setup>
 import type { PopulatedFieldType } from "#pruvious";
 
+import { getCollectionData } from "#pruvious/client";
+
+// Fetch data from the Settings collection
+const { socialMedia } = await getCollectionData("settings");
+
 const { data: homePage } = await useAsyncData("home-page", () =>
   $fetch<PopulatedFieldType["pages"]>("/api/pages", { query: { where: "path[=][/]" } }));
 
@@ -86,6 +91,7 @@ onMounted(() => {
               :class="activeAnchor === link.anchor ? 'active' : ''"
               :aria-current="activeAnchor === link.anchor ? 'location' : undefined"
             >{{ link.title }}</a>
+            <SocialIcons class="social-icons" :social-media="socialMedia" />
           </div>
         </nav>
       </header>
@@ -183,6 +189,10 @@ onMounted(() => {
 .nav-link:focus-visible {
   outline: 3px solid var(--primary);
   outline-offset: 2px;
+}
+
+.social-icons {
+  margin-top: 1rem;
 }
 
 .skip-link {
