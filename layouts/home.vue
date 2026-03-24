@@ -75,7 +75,7 @@ onMounted(() => {
   <div class="layout">
     <a href="#main-content" class="skip-link">Skip to main content</a>
     <div class="page">
-      <header>
+      <header class="header">
         <nav class="nav" aria-label="Page sections">
           <div class="nav-links">
             <a
@@ -95,7 +95,7 @@ onMounted(() => {
         <slot />
       </main>
     </div>
-    <Footer class="footer" />
+    <Footer />
   </div>
 </template>
 
@@ -105,6 +105,7 @@ onMounted(() => {
   grid-template-rows: auto 1fr;
   max-width: 1200px;
   margin: 0 auto;
+  padding: 0 2rem;
 }
 
 .page {
@@ -112,14 +113,23 @@ onMounted(() => {
   justify-content: space-between;
   padding: 0 10px;
   padding-top: 50px;
+  gap: 1rem;
 }
 
 .header {
   height: "fit-content";
+  display: none;
+}
+
+@media only screen and (min-width: 700px) {
+  .header {
+    display: block;
+  }
 }
 
 .main {
   flex: 1;
+  max-width: 800px;
 }
 
 .nav {

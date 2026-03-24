@@ -32,11 +32,11 @@ function formatDate(timestamp: number) {
 <style scoped>
 .post {
   display: flex;
+  flex-direction: column;
   gap: 1rem;
 }
 
 .image {
-  max-width: 100px;
   aspect-ratio: 16/9;
   width: 100%;
   height: 100%;
@@ -50,7 +50,6 @@ function formatDate(timestamp: number) {
 
 .title {
   margin: 0;
-  line-height: 1.25rem;
   font-size: 1.25rem;
   font-weight: normal;
   color: var(--text);
@@ -75,6 +74,17 @@ function formatDate(timestamp: number) {
 .tags {
   margin-top: 0.5rem;
   display: flex;
+  flex-wrap: wrap;
   gap: 1rem;
+}
+
+@container container (width > 450px) {
+  .post {
+    flex-direction: row;
+  }
+
+  .image {
+    max-width: 100px;
+  }
 }
 </style>

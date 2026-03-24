@@ -89,7 +89,7 @@ defineProps({
   width: 100%;
 }
 
-@container container (width > 600px) {
+@container container (width > 700px) {
   .hero {
     flex-direction: row;
     align-items: center;

@@ -36,11 +36,11 @@ defineProps<{
 <style scoped>
 .portfolio-item {
   display: flex;
+  flex-direction: column;
   gap: 1rem;
 }
 
 .image {
-  max-width: 100px;
   aspect-ratio: 16/9;
   width: 100%;
   height: 100%;
@@ -79,6 +79,17 @@ defineProps<{
 
 .tags {
   display: flex;
+  flex-wrap: wrap;
   gap: 1rem;
+}
+
+@container container (width > 450px) {
+  .portfolio-item {
+    flex-direction: row;
+  }
+
+  .image {
+    max-width: 100px;
+  }
 }
 </style>

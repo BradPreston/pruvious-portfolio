@@ -43,6 +43,12 @@ html {
   scroll-padding-top: 50px;
 }
 
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
 body {
   font-family: var(--font-family);
   background: var(--bg);

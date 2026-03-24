@@ -146,7 +146,7 @@ async function handleSubmit(event: Event) {
   flex-direction: column;
 }
 
-@container container (width > 500px) {
+@container container (width > 700px) {
   .form-section {
     flex-direction: row;
   }
@@ -162,7 +162,7 @@ async function handleSubmit(event: Event) {
   width: 100%;
 }
 
-@container container (width > 500px) {
+@container container (width > 700px) {
   .content {
     max-width: 450px;
   }

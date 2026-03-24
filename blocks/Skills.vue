@@ -86,7 +86,7 @@ defineProps({
   flex-direction: column;
 }
 
-@container container (width > 500px) {
+@container container (width > 700px) {
   .skills {
     flex-direction: row;
   }
@@ -102,7 +102,7 @@ defineProps({
   width: 100%;
 }
 
-@container container (width > 500px) {
+@container container (width > 700px) {
   .content {
     max-width: 450px;
   }
